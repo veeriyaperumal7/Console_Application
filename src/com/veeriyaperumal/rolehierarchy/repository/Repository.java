@@ -320,4 +320,16 @@ public class Repository {
 
 	}
 
+	public void deleteSqlTableData() {
+		query = "truncate TABLE reporting";
+		JdbcConnection.getInstance().executeInsertOrUpdateQuery(query);
+
+		query = "truncate TABLE employee";
+		JdbcConnection.getInstance().executeInsertOrUpdateQuery(query);
+
+		query = "truncate TABLE role_table";
+		JdbcConnection.getInstance().executeInsertOrUpdateQuery(query);
+
+	}
+
 }

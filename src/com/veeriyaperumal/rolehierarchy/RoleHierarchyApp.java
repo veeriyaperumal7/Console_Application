@@ -4,6 +4,7 @@ import com.veeriyaperumal.rolehierarchy.base.BaseView;
 import com.veeriyaperumal.rolehierarchy.addsubrole.AddSubRoleView;
 import com.veeriyaperumal.rolehierarchy.adduser.AddUserView;
 import com.veeriyaperumal.rolehierarchy.deleterole.DeleteRoleView;
+import com.veeriyaperumal.rolehierarchy.deletetablevalues.DeleteTableValueView;
 import com.veeriyaperumal.rolehierarchy.displayroles.DisplayRolesView;
 import com.veeriyaperumal.rolehierarchy.rootrole.RootRoleView;
 import com.veeriyaperumal.rolehierarchy.viewusersandsubusers.ViewUsersAndSubUsersView;
@@ -26,6 +27,7 @@ public class RoleHierarchyApp extends BaseView {
 	private HeightOfHierarchyView heightOfHierarchyView = new HeightOfHierarchyView();
 	private DeleteUserView deleteUserView = new DeleteUserView();
 	private CommonBossView commonBossView = new CommonBossView();
+	private DeleteTableValueView deleteTableValueView = new DeleteTableValueView();
 
 	public RoleHierarchyApp() {
 
@@ -33,10 +35,11 @@ public class RoleHierarchyApp extends BaseView {
 
 	public static void main(String[] args) {
 		RoleHierarchyApp app = new RoleHierarchyApp();
-		app.start();
+		app.startApp();
 	}
 
-	private void start() {
+	private void startApp() {
+		deleteTableValueView.deleteSqlTableData();//To delete previously added date to start fresh
 		printHeader("WELOME TO ROLE HIERARCHY");
 		rootRoleView.addRootRole();
 		showOptions();
@@ -117,4 +120,5 @@ public class RoleHierarchyApp extends BaseView {
 
 		} while (!isExit);
 	}
+
 }
