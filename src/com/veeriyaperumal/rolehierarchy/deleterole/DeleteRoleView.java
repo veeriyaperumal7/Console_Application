@@ -13,24 +13,48 @@ public class DeleteRoleView extends BaseView {
 		this.deleteRoleViewModel = new DeleteRoleViewModel(this);
 	}
 
-	public void deleteRole() {
-		Role role = new Role();
-		role.setRoleName(getName("Enter role name : "));
-		String redirectedName = "";
+	public void deleteRole() {	
+		Role deleteRole ,transferRole;
+		deleteRole = deleteRoleViewModel.getRole(getName("Enter role to be deleted : "));
+		transferRole = deleteRoleViewModel.getRole(getName("Enter  role to be transfered : "));
+		
+		if(deleteRole==null) {
+	    	printUserWarningMessage("Not able to delete role.Because delete role not found...");
+	    	return;
+	    }
+        
+	    if(transferRole==null) {
+	    	printUserWarningMessage("Not able to delete role.Because transfer role not found...");
+	    	return;
+	    }
+	    
+	    
 		try {
-			if (!deleteRoleViewModel.isRolePresent(role.getRoleName())) {
-				printUserWarningMessage("This role not present.");
-				return;
-			}
-			redirectedName = deleteRoleViewModel.deleteRole(role);
-			if (redirectedName.length() >= 1) {
-				printSuccesMessage("Successfully role deleted and redirected to " + redirectedName);
+			if (deleteRoleViewModel.deleteRole(deleteRole,transferRole)) {
+				printSuccesMessage("Successfully role deleted...");
 			} else {
-				printSuccesMessage("Not role deleted");
+				printSuccesMessage("Role not deleted...");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+//		Role role = new Role();
+//		role.setRoleName(getName("Enter the role to deleted : "));
+//		String redirectedName = "";
+//		try {
+//			if (!deleteRoleViewModel.isRolePresent(role.getRoleName())) {
+//				printUserWarningMessage("This role not present.");
+//				return;
+//			}
+//			redirectedName = deleteRoleViewModel.deleteRole(role);
+//			if (redirectedName.length() >= 1) {
+//				printSuccesMessage("Successfully role deleted and redirected to " + redirectedName);
+//			} else {
+//				printSuccesMessage("Not role deleted");
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private String getName(String message) {

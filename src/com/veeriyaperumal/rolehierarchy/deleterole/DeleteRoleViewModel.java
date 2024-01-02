@@ -13,12 +13,8 @@ public class DeleteRoleViewModel {
 		this.deleteRoleView = deleteRoleView;
 	}
 
-	public String deleteRole(Role role) throws SQLException {
-		return Repository.getInstance().deleteRole(role);
-	}
-
-	public boolean isRolePresent(String name) throws SQLException {
-		return (Repository.getInstance().getRoleId(name) != -1) ? true : false;
+	public boolean deleteRole(Role deleteRole, Role transferRole) throws SQLException {
+		return Repository.getInstance().deleteRole(deleteRole,transferRole);
 	}
 
 	public boolean isValidRoleName(String name) {
@@ -34,5 +30,9 @@ public class DeleteRoleViewModel {
 			}
 		}
 		return true;
+	}
+	
+	public Role getRole(String roleName) {
+		return  Repository.getInstance().getRole(roleName);
 	}
 }

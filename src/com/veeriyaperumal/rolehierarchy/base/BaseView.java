@@ -83,6 +83,7 @@ public class BaseView {
 
 	protected void printSuccesMessage(String message) {
 		System.out.println(BOLD + GREEN + message + RESET);
+		printLineSeperator();
 	}
 
 	protected int getIntegerInput(String message) {

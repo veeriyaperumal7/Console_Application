@@ -1,4 +1,4 @@
-package com.veeriyaperumal.rolehierarchy.addrole;
+package com.veeriyaperumal.rolehierarchy.adduser;
 
 import com.veeriyaperumal.rolehierarchy.repository.Repository;
 
@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import com.veeriyaperumal.rolehierarchy.model.Employee;
 import com.veeriyaperumal.rolehierarchy.model.Role;
 
-public class AddRoleViewModel {
+public class AddUserViewModel {
 
-	AddRoleView addRoleView;
+	AddUserView addRoleView;
 
-	public AddRoleViewModel(AddRoleView addRoleView) {
+	public AddUserViewModel(AddUserView addRoleView) {
 		this.addRoleView = addRoleView;
 	}
 
-	public boolean isRoleName(String name) {
+	public boolean isValidName(String name) {
 		if (name.length() < 1) {
 			return false;
 		}
@@ -30,8 +30,12 @@ public class AddRoleViewModel {
 		return true;
 	}
 
-	public boolean addRole(Role newRole, Employee employee) throws SQLException {
-		return Repository.getInstance().addRole(newRole,employee);
+	public boolean addUser(Role role, Employee employee) throws SQLException {
+		return Repository.getInstance().addUser(role, employee);
+	}
+
+	public Role getRole(String roleName) {
+		return Repository.getInstance().getRole(roleName);
 	}
 
 }

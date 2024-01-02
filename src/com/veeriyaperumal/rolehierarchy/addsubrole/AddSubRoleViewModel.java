@@ -31,5 +31,9 @@ public class AddSubRoleViewModel {
 		return Repository.getInstance().addSubRole(subRole,reportingRole);
 	}
 
+	public Role getReportingRole(String roleName) {
+		return  Repository.getInstance().getRole(roleName);
+	}
+
 	
 }

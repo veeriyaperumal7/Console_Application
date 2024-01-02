@@ -1,11 +1,8 @@
 package com.veeriyaperumal.rolehierarchy.model;
 
-import java.util.ArrayList;
-
 public class Employee {
 	private String name, activeStatus;
-	private int employeeId, roleId, reportManagerId;
-	private ArrayList<Employee> reportingList = new ArrayList<>();
+	private int employeeId;
 
 	public String getName() {
 		return name;
@@ -29,29 +26,5 @@ public class Employee {
 
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
-	}
-
-	public int getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
-
-	public int getReportManagerId() {
-		return reportManagerId;
-	}
-
-	public void setReportManagerId(int reportManagerId) {
-		this.reportManagerId = reportManagerId;
-	}
-
-	public ArrayList<Employee> getReportingList() {
-		return reportingList;
-	}
-
-	public void setReportingList(ArrayList<Employee> reportingList) {
-		this.reportingList = reportingList;
 	}
 }

@@ -16,23 +16,22 @@ public class AddSubRoleView extends BaseView {
 	}
 
 	public void addSubRole() {
-		print("How many operations : ");
-		int operationCount = getIntegerInput("Enter the valid input : ");
-		while (operationCount > 0) {
-			Role subRole = new Role();
-			Role reportingRole = new Role();
-			subRole.setRoleName(getName("Enter sub role name : "));
-			reportingRole.setRoleName(getName("Enter reporting role name : "));
-			try {
-				if (addSubRoleViewModel.addSubRole(subRole, reportingRole)) {
-					printSuccesMessage("Successfully sub role added");
-				} else {
-					printSuccesMessage("Not sub role added");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+		Role subRole = new Role();
+		Role reportingRole;
+		subRole.setRoleName(getName("Enter sub role name : "));
+        reportingRole = addSubRoleViewModel.getReportingRole(getName("Enter reporting role name : "));
+	    if(reportingRole==null) {
+	    	printUserWarningMessage("Not able add sub role.Because reporting role not found...");
+	    	return;
+	    }
+		try {
+			if (addSubRoleViewModel.addSubRole(subRole, reportingRole)) {
+				printSuccesMessage("Successfully sub role added");
+			} else {
+				printSuccesMessage("Not sub role added");
 			}
-			operationCount--;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

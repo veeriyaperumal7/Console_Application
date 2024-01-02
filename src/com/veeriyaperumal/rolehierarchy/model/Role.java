@@ -1,8 +1,20 @@
 package com.veeriyaperumal.rolehierarchy.model;
 
+import java.util.ArrayList;
+
 public class Role {
-	private String roleName, roleStatus;
 	private int roleId;
+	private String roleName, roleStatus, reportingRoleName;
+	private ArrayList<Employee> employeeIdList = new ArrayList<>();
+	private ArrayList<Role> reportingRoles = new ArrayList<>();
+
+	public ArrayList<Employee> getEmployeeIdList() {
+		return employeeIdList;
+	}
+
+	public void setEmployeeIdList(ArrayList<Employee> employeeIdList) {
+		this.employeeIdList = employeeIdList;
+	}
 
 	public Role(String roleName) {
 		this.roleName = roleName;
@@ -28,11 +40,27 @@ public class Role {
 		this.roleStatus = roleStatus;
 	}
 
+	public String getReportingRoleName() {
+		return reportingRoleName;
+	}
+
+	public void setReportingRoleName(String reportingRoleName) {
+		this.reportingRoleName = reportingRoleName;
+	}
+
 	public int getRoleId() {
 		return roleId;
 	}
 
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
+	}
+
+	public ArrayList<Role> getReportingRoles() {
+		return reportingRoles;
+	}
+
+	public void setReportingRoles(ArrayList<Role> reportingRoles) {
+		this.reportingRoles = reportingRoles;
 	}
 }
