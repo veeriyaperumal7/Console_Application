@@ -295,7 +295,9 @@ public class Repository {
 		int minSize = Math.min(bossList1.size(), bossList2.size());
 		String commonName = "";
 		for (int i = 0; i < minSize; i++) {
-			if (bossList1.get(i).equals(bossList2.get(i))) {
+			if (bossList1.get(i).equals(bossList2.get(i)) && !bossList1.get(i).equals(employeeName1)
+					&& !bossList1.get(i).equals(employeeName2) && !bossList2.get(i).equals(employeeName1)
+					&& !bossList2.get(i).equals(employeeName2)) {
 				commonName = bossList1.get(i);
 			}
 		}

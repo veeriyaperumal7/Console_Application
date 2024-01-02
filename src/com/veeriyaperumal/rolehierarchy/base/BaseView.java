@@ -32,17 +32,17 @@ public class BaseView {
 			return;
 		}
 
-		System.out.println("+----------------------+");
-		System.out.printf("| %-20s |\n", header);
-		System.out.println("+----------------------+");
+		System.out.println("+--------------------------------------------+");
+		System.out.printf("| %-42s |\n", header);
+		System.out.println("+--------------------------------------------+");
 
 		int rowNo = 1;
 		for (String option : options) {
-			System.out.printf("| %-20s |\n", rowNo + " " + option);
+			System.out.printf("| %-42s |\n", rowNo + " " + option);
 			rowNo++;
 		}
 
-		System.out.println("+----------------------+");
+		System.out.println("+--------------------------------------------+");
 	}
 
 	protected void print(String message) {
