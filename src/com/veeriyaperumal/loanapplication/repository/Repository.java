@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import com.veeriyaperumal.loanapplication.model.JdbcConnection;
-import com.veeriyaperumal.loanapplication.dto.Customer;
-import com.veeriyaperumal.loanapplication.dto.LoanData;
-import com.veeriyaperumal.loanapplication.dto.TransactionData;
+import com.veeriyaperumal.loanapplication.databaseconnection.JdbcConnection;
+import com.veeriyaperumal.loanapplication.model.Customer;
+import com.veeriyaperumal.loanapplication.model.LoanData;
+import com.veeriyaperumal.loanapplication.model.TransactionData;
 
 public class Repository {
 	private String query;

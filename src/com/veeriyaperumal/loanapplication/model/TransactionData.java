@@ -1,4 +1,4 @@
-package com.veeriyaperumal.loanapplication.dto;
+package com.veeriyaperumal.loanapplication.model;
 
 import java.time.LocalDate;
 

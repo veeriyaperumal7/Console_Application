@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import com.veeriyaperumal.railwaysreservation.RailwayReservationApp;
-import com.veeriyaperumal.railwaysreservation.dto.Train;
-import com.veeriyaperumal.railwaysreservation.dto.Passenger;
+import com.veeriyaperumal.railwaysreservation.model.Passenger;
+import com.veeriyaperumal.railwaysreservation.model.Train;
 import com.veeriyaperumal.railwaysreservation.util.Utility;
 
 public class BookTicketView {

@@ -2,8 +2,8 @@ package com.veeriyaperumal.inventorymanagement.stockadjustment;
 
 import java.util.HashMap;
 
+import com.veeriyaperumal.inventorymanagement.model.Product;
 import com.veeriyaperumal.inventorymanagement.repository.*;
-import com.veeriyaperumal.inventorymanagement.dto.Product;
 
 public class StockAdjustmentViewModel {
 	StockAdjustmentView stockAdjustmentView;

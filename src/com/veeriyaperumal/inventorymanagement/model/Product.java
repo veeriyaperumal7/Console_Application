@@ -1,4 +1,4 @@
-package com.veeriyaperumal.inventorymanagement.dto;
+package com.veeriyaperumal.inventorymanagement.model;
 
 public class Product implements Comparable<Product> {
 	private String productName;

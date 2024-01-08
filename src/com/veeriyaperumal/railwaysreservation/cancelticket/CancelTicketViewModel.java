@@ -1,6 +1,6 @@
 package com.veeriyaperumal.railwaysreservation.cancelticket;
 
-import com.veeriyaperumal.railwaysreservation.dto.Ticket;
+import com.veeriyaperumal.railwaysreservation.model.Ticket;
 import com.veeriyaperumal.railwaysreservation.repository.Repository;
 
 public class CancelTicketViewModel {

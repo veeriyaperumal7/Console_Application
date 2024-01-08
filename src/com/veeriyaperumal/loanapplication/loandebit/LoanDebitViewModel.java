@@ -2,8 +2,8 @@ package com.veeriyaperumal.loanapplication.loandebit;
 
 import java.util.HashMap;
 
-import com.veeriyaperumal.loanapplication.dto.Customer;
-import com.veeriyaperumal.loanapplication.dto.LoanData;
+import com.veeriyaperumal.loanapplication.model.Customer;
+import com.veeriyaperumal.loanapplication.model.LoanData;
 import com.veeriyaperumal.loanapplication.repository.Repository;
 
 public class LoanDebitViewModel implements Runnable {

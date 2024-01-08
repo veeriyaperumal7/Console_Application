@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Set;
 
-import com.veeriyaperumal.inventorymanagement.dto.Product;
+import com.veeriyaperumal.inventorymanagement.model.Product;
 import com.veeriyaperumal.inventorymanagement.util.Utility;
 
 public class StockAdjustmentView {
@@ -53,15 +53,14 @@ public class StockAdjustmentView {
 	private void subtractQuantity(Product product) {
 		Utility.printSeperatorLine();
 		if (product.getQuantity() < 1) {
-			Utility.printUserWarningMessage(
-					"Sorry,unable subtract stock because alreay stock is less than 1 quantity.");
+			Utility.printUserWarningMessage("Sorry,unable outward stock because alreay stock is less than 1 quantity.");
 			Utility.printSeperatorLine();
 			return;
 		}
 		if (stockAdjustmentViewModel.subtractQuantity(getValidQuantity(product), product)) {
-			Utility.printUserWarningMessage("Quantity subtracted successfully.");
+			Utility.printUserWarningMessage("Quantity outward successfully.");
 		} else {
-			Utility.printUserWarningMessage("Quantity not subtracted.");
+			Utility.printUserWarningMessage("Quantity not outward.");
 		}
 		Utility.printSeperatorLine();
 	}
@@ -69,16 +68,16 @@ public class StockAdjustmentView {
 	private void addQuantity(Product product) {
 		Utility.printSeperatorLine();
 		if (stockAdjustmentViewModel.addQuantity(getValidQuantity(), product)) {
-			Utility.printUserWarningMessage("Quantity added successfully.");
+			Utility.printUserWarningMessage("Quantity inward successfully.");
 		} else {
-			Utility.printUserWarningMessage("Quantity not added.");
+			Utility.printUserWarningMessage("Quantity inward added.");
 		}
 		Utility.printSeperatorLine();
 	}
 
 	private int getValidQuantity() {
 		int userEnteredProductQuantity = -1;
-		System.out.print("Enter the valid product quantity to add : ");
+		System.out.print("Enter the valid product quantity to inward : ");
 		do {
 			try {
 				userEnteredProductQuantity = Utility.getScanner().nextInt();
@@ -99,7 +98,7 @@ public class StockAdjustmentView {
 
 	private int getValidQuantity(Product product) {
 		int userEnteredProductQuantity = -1;
-		System.out.print("Enter the valid product quantity to subtract : ");
+		System.out.print("Enter the valid product quantity to outward : ");
 		do {
 			try {
 				userEnteredProductQuantity = Utility.getScanner().nextInt();
@@ -158,7 +157,7 @@ public class StockAdjustmentView {
 
 	private String getSelectedOption() {
 		int userEnteredChoice = -1;
-		System.out.print("1 - Add quantity\n2 - Subtract quantity\nChoose your option : ");
+		System.out.print("1 - Stock Inward\n2 - Stock Outward\nChoose your option : ");
 		do {
 			try {
 				userEnteredChoice = Utility.getScanner().nextInt();

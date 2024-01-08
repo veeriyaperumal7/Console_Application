@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import com.veeriyaperumal.railwaysreservation.dto.Passenger;
-import com.veeriyaperumal.railwaysreservation.dto.Train;
+import com.veeriyaperumal.railwaysreservation.model.Passenger;
+import com.veeriyaperumal.railwaysreservation.model.Train;
 import com.veeriyaperumal.railwaysreservation.repository.Repository;
 import com.veeriyaperumal.railwaysreservation.util.Utility;
 

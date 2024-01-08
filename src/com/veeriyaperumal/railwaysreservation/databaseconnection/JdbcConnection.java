@@ -1,4 +1,4 @@
-package com.veeriyaperumal.inventorymanagement.model;
+package com.veeriyaperumal.railwaysreservation.databaseconnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import com.veeriyaperumal.railwaysreservation.util.Utility;
 
 public class JdbcConnection {
-	private String url = "jdbc:mysql://localhost:3306/inventorymanagement";
+	private String url = "jdbc:mysql://localhost:3306/railwayreservation";
 	private String user = "root";
 	private String password = "1234";
 

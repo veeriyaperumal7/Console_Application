@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 
-import com.veeriyaperumal.loanapplication.dto.Customer;
+import com.veeriyaperumal.loanapplication.model.Customer;
 import com.veeriyaperumal.loanapplication.util.Utility;
 
 public class LoanCreateView {

@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import com.veeriyaperumal.inventorymanagement.dto.Product;
-import com.veeriyaperumal.inventorymanagement.model.JdbcConnection;
+import com.veeriyaperumal.inventorymanagement.databaseconnetion.JdbcConnection;
+import com.veeriyaperumal.inventorymanagement.model.Product;
 
 public class Repository {
 	private String query;

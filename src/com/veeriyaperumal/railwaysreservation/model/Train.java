@@ -1,4 +1,4 @@
-package com.veeriyaperumal.railwaysreservation.dto;
+package com.veeriyaperumal.railwaysreservation.model;
 
 import java.sql.Time;
 import java.util.Date;

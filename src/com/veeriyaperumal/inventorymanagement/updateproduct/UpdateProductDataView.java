@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Set;
 
 import com.veeriyaperumal.inventorymanagement.addproduct.AddProductView;
-import com.veeriyaperumal.inventorymanagement.dto.Product;
+import com.veeriyaperumal.inventorymanagement.model.Product;
 import com.veeriyaperumal.inventorymanagement.util.Utility;
 
 public class UpdateProductDataView extends AddProductView {

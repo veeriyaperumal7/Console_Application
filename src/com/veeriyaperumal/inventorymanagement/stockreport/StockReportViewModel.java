@@ -2,7 +2,7 @@ package com.veeriyaperumal.inventorymanagement.stockreport;
 
 import java.util.Map;
 
-import com.veeriyaperumal.inventorymanagement.dto.Product;
+import com.veeriyaperumal.inventorymanagement.model.Product;
 import com.veeriyaperumal.inventorymanagement.repository.Repository;
 
 public class StockReportViewModel {

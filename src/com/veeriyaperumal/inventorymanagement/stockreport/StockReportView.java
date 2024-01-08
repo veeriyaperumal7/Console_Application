@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.InputMismatchException;
 
-import com.veeriyaperumal.inventorymanagement.dto.Product;
+import com.veeriyaperumal.inventorymanagement.model.Product;
 import com.veeriyaperumal.inventorymanagement.repository.Repository;
 import com.veeriyaperumal.inventorymanagement.util.Utility;
 

@@ -2,7 +2,7 @@ package com.veeriyaperumal.inventorymanagement.updateproduct;
 
 import java.util.HashMap;
 
-import com.veeriyaperumal.inventorymanagement.dto.Product;
+import com.veeriyaperumal.inventorymanagement.model.Product;
 import com.veeriyaperumal.inventorymanagement.repository.Repository;
 
 public class UpdateProductDataViewModel {

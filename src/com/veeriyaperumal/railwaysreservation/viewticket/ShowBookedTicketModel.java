@@ -1,9 +1,9 @@
 package com.veeriyaperumal.railwaysreservation.viewticket;
 
+import com.veeriyaperumal.railwaysreservation.model.Passenger;
+import com.veeriyaperumal.railwaysreservation.model.Ticket;
+import com.veeriyaperumal.railwaysreservation.model.Train;
 import com.veeriyaperumal.railwaysreservation.repository.Repository;
-import com.veeriyaperumal.railwaysreservation.dto.Passenger;
-import com.veeriyaperumal.railwaysreservation.dto.Ticket;
-import com.veeriyaperumal.railwaysreservation.dto.Train;
 
 public class ShowBookedTicketModel {
 	private Passenger passenger;

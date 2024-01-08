@@ -4,10 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.veeriyaperumal.railwaysreservation.dto.Passenger;
-import com.veeriyaperumal.railwaysreservation.dto.Ticket;
-import com.veeriyaperumal.railwaysreservation.dto.Train;
-import com.veeriyaperumal.railwaysreservation.model.JdbcConnection;
+import com.veeriyaperumal.railwaysreservation.databaseconnection.JdbcConnection;
+import com.veeriyaperumal.railwaysreservation.model.Passenger;
+import com.veeriyaperumal.railwaysreservation.model.Ticket;
+import com.veeriyaperumal.railwaysreservation.model.Train;
 
 public class Repository {
 	private String query;

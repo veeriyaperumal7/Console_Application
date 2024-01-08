@@ -1,7 +1,7 @@
 package com.veeriyaperumal.inventorymanagement.addproduct;
 
+import com.veeriyaperumal.inventorymanagement.model.Product;
 import com.veeriyaperumal.inventorymanagement.repository.Repository;
-import com.veeriyaperumal.inventorymanagement.dto.Product;
 
 public class AddProductViewModel {
 

@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 
 import com.veeriyaperumal.inventorymanagement.util.Utility;
-import com.veeriyaperumal.loanapplication.dto.Customer;
-import com.veeriyaperumal.loanapplication.dto.LoanData;
-import com.veeriyaperumal.loanapplication.dto.TransactionData;
+import com.veeriyaperumal.loanapplication.model.Customer;
+import com.veeriyaperumal.loanapplication.model.LoanData;
+import com.veeriyaperumal.loanapplication.model.TransactionData;
 
 public class LoanReportView {
 

@@ -72,7 +72,7 @@ public class InventoryApp {
 
 	private void printFeatures() {
 		System.out.println("1 - Add Product");
-		System.out.println("2 - Add or Subtract Stock");
+		System.out.println("2 - Stock Inward or Stock Outward");
 		System.out.println("3 - Delete or Update Product");
 		System.out.println("4 - Stock Report");
 		System.out.print("5 - Exit\nChoose your option : ");

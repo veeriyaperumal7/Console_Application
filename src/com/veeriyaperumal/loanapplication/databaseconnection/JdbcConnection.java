@@ -1,4 +1,4 @@
-package com.veeriyaperumal.loanapplication.model;
+package com.veeriyaperumal.loanapplication.databaseconnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
