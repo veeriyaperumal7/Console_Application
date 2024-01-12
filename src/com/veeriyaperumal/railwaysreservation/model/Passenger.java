@@ -1,9 +1,9 @@
-package com.veeriyaperumal.railwaysreservation.dto;
+package com.veeriyaperumal.railwaysreservation.model;
 
 import java.time.LocalDate;
 
 public class Passenger {
-	private int passengerId,pnr;
+	private int passengerId, pnr;
 	private String name, gender, place, mobileNumber;
 	private LocalDate dob;
 
@@ -30,7 +30,7 @@ public class Passenger {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
+
 	public String getPlace() {
 		return place;
 	}
