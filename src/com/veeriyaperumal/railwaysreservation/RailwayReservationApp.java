@@ -8,9 +8,9 @@ import com.veeriyaperumal.railwaysreservation.util.Utility;
 import com.veeriyaperumal.railwaysreservation.viewticket.ShowBookedTicketView;
 
 public class RailwayReservationApp {
-	BookTicketView bookTicketView;
-	ShowBookedTicketView showBookedTicketView;
-	CancelTicketView cancelTicketView;
+	private BookTicketView bookTicketView;
+	private ShowBookedTicketView showBookedTicketView;
+	private CancelTicketView cancelTicketView;
 
 	public RailwayReservationApp() {
 		bookTicketView = new BookTicketView(this);
