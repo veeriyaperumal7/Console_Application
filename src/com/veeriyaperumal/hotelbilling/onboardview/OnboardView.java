@@ -18,7 +18,7 @@ public class OnboardView extends BaseView {
 		menuOptions.add("Login");
 		printOptionsTable(menuOptions, "OPTIONS");
 		print("Choose your option : ");
-		chooseOptions(menuOptions.get(getIntegerInput("Choose Valid Options", 1, menuOptions.size()) - 1));
+		chooseOptions(menuOptions.get(getIntegerInput("Choose Valid Options : ", 1, menuOptions.size()) - 1));
 	}
 
 	private void chooseOptions(String selectedOption) {
@@ -41,8 +41,10 @@ public class OnboardView extends BaseView {
 			currentUser.setPassword(getStringInput("Enter valid password :"));
 			try {
 				if (onboardViewModel.isValidUser(currentUser)) {
+					printSuccesMessage("Login Successfull...");
 					return;
 				} else {
+					printUserWarningMessage("Email address or password is wrong.Try again...");
 					continue;
 				}
 			} catch (ClassNotFoundException | SQLException e) {

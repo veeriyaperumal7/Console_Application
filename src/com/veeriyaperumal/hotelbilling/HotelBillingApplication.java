@@ -11,7 +11,7 @@ public class HotelBillingApplication extends BaseView {
 	private BillingView billingView;
 
 	public HotelBillingApplication() {
-
+		this.billingView = new BillingView();
 	}
 
 	public static void main(String[] args) {
@@ -40,7 +40,9 @@ public class HotelBillingApplication extends BaseView {
 			menuOptions.add("Billing");
 			menuOptions.add("Bill Cancel");
 			menuOptions.add("Exit");
-			switch (menuOptions.get(getIntegerInput("Choose valid options", 1, menuOptions.size() - 1))) {
+			printOptionsTable(menuOptions, "Features");
+			print("Choose valid option : ");
+			switch (menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size()) - 1)) {
 			case "Billing":
 				billingView.showBillingOptions();
 				break;
@@ -53,7 +55,23 @@ public class HotelBillingApplication extends BaseView {
 	}
 
 	private void showAdminFeatures() {
-
+		do {
+			menuOptions.clear();
+			menuOptions.add("Billing");
+			menuOptions.add("Bill Cancel");
+			menuOptions.add("Exit");
+			printOptionsTable(menuOptions, "Features");
+			print("Choose valid option : ");
+			switch (menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size() - 1) - 1)) {
+			case "Billing":
+				billingView.showBillingOptions();
+				break;
+			case "Bill Cancel":
+				break;
+			case "Exit":
+				break;
+			}
+		} while (true);
 	}
 
 }

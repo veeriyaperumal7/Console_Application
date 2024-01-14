@@ -6,6 +6,18 @@ public class Dish {
 	private String dishName, imagePath;
 	private float price;
 
+	public Dish() {
+
+	}
+
+	public Dish(Dish dish) {
+		this.dishId = dish.dishId;
+		this.dishName = dish.dishName;
+		this.imagePath = dish.imagePath;
+		this.price = dish.price;
+		this.quantity = 0;
+	}
+
 	public int getDishId() {
 		return dishId;
 	}

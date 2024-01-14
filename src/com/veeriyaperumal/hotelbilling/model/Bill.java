@@ -1,15 +1,16 @@
 package com.veeriyaperumal.hotelbilling.model;
 
-import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Bill {
 
 	private int billNo;
-	private Date billDate;
-	private Time billTime;	
-	private ArrayList<Dish> purchasedDish = new ArrayList<>();
+	private LocalDate billDate;
+	private Time billTime;
+	private List<Dish> purchasedDish = new LinkedList<>();
 	private float billPrice;
 
 	public int getBillNo() {
@@ -20,11 +21,11 @@ public class Bill {
 		this.billNo = billNo;
 	}
 
-	public Date getBillDate() {
+	public LocalDate getBillDate() {
 		return billDate;
 	}
 
-	public void setBillDate(Date billDate) {
+	public void setBillDate(LocalDate billDate) {
 		this.billDate = billDate;
 	}
 
@@ -36,11 +37,11 @@ public class Bill {
 		this.billTime = billTime;
 	}
 
-	public ArrayList<Dish> getPurchasedDish() {
+	public List<Dish> getPurchasedDish() {
 		return purchasedDish;
 	}
 
-	public void setPurchasedDish(ArrayList<Dish> purchasedDish) {
+	public void setPurchasedDish(List<Dish> purchasedDish) {
 		this.purchasedDish = purchasedDish;
 	}
 

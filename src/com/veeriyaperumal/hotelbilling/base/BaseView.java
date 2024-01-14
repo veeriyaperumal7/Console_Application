@@ -5,6 +5,9 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.veeriyaperumal.hotelbilling.model.Bill;
+import com.veeriyaperumal.hotelbilling.model.Dish;
+
 public abstract class BaseView extends BaseViewModel {
 
 	private static final String GREEN = "\u001B[32m";
@@ -45,6 +48,51 @@ public abstract class BaseView extends BaseViewModel {
 		System.out.println("+--------------------------------+");
 	}
 
+	public void printBillTable(Bill currentBill) {
+		int serialNumber = 1;
+		int totalQuantity = 0;
+		List<Dish> purchasedDishList = currentBill.getPurchasedDish();
+		System.out.println("+" + "-".repeat(69) + "+");
+		System.out.printf("| %-44s  %-20s |\n", "Bill No: " + currentBill.getBillNo(),
+				"Bill Date: " + currentBill.getBillDate().toString());
+		System.out.println("+" + "-".repeat(69) + "+");
+		System.out.printf("| %-4s | %-20s | %-8s | %-8s | %-15s |\n", "S.No", "Dish Name", "Quantity", "Price",
+				"Total");
+		System.out.println("+" + "-".repeat(69) + "+");
+
+		for (Dish dish : purchasedDishList) {
+			float total = dish.getQuantity() * dish.getPrice();
+			System.out.printf("| %-4d | %-20s | %-8s | %-8s | %-15s |\n", serialNumber++, dish.getDishName(),
+					dish.getQuantity(), dish.getPrice(), total);
+			totalQuantity += dish.getQuantity();
+		}
+
+		System.out.println("+" + "-".repeat(69) + "+");
+		System.out.printf("| %-4s | %-20s | %-8s | %-8s | %-15s |\n", "", "Total", totalQuantity, "",
+				currentBill.getBillPrice());
+		System.out.println("+" + "-".repeat(69) + "+");
+	}
+
+	public static void printDishTable(List<Dish> dishes, String header) {
+		if (dishes.isEmpty()) {
+			System.out.println("No dishes to display.");
+			return;
+		}
+		System.out.println("+" + "-".repeat(48) + "+");
+		System.out.printf("| %-46s |\n", header);
+		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+
+		System.out.printf("| %-10s | %-20s | %-10s |%n", "Dish Id", "Dish Name", "Dish Price");
+
+		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+
+		for (Dish dish : dishes) {
+			System.out.printf("| %-10d | %-20s | %-10.2f |%n", dish.getDishId(), dish.getDishName(), dish.getPrice());
+		}
+
+		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+	}
+
 	protected void print(String message) {
 		System.out.print(message);
 	}
@@ -75,14 +123,17 @@ public abstract class BaseView extends BaseViewModel {
 
 	protected void printErrorMessage(String message) {
 		System.out.print(BOLD + RED + message + RESET);
+		printLineSeperator();
 	}
 
 	protected void printUserWarningMessage(String message) {
 		System.out.println(BOLD + YELLOW + message + RESET);
+		printLineSeperator();
 	}
 
 	protected void printSuccesMessage(String message) {
 		System.out.println(BOLD + GREEN + message + RESET);
+		printLineSeperator();
 	}
 
 	protected int getIntegerInput(String message) {
@@ -110,10 +161,10 @@ public abstract class BaseView extends BaseViewModel {
 				getScanner().nextLine();
 				if (!(userEnteredChoice >= minSelectionValue && userEnteredChoice <= maxSelectionValue)) {
 					showWrongSelectionMessage(message);
+					continue;
 				} else {
 					break;
 				}
-				break;
 			} catch (InputMismatchException e) {
 				showWrongSelectionMessage(message);
 				getScanner().next();
