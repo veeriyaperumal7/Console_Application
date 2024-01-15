@@ -1,17 +1,27 @@
 package com.veeriyaperumal.hotelbilling;
 
 import com.veeriyaperumal.hotelbilling.onboardview.OnboardView;
+import com.veeriyaperumal.hotelbilling.report.ReportView;
 import com.veeriyaperumal.hotelbilling.repository.Repository;
 import com.veeriyaperumal.hotelbilling.base.BaseView;
 import com.veeriyaperumal.hotelbilling.billing.BillingView;
+import com.veeriyaperumal.hotelbilling.cancelbill.CancelBillView;
+import com.veeriyaperumal.hotelbilling.employee.EmployeeView;
 
 public class HotelBillingApplication extends BaseView {
 
-	private OnboardView onboardView = new OnboardView();
+	private OnboardView onboardView;
 	private BillingView billingView;
+	private EmployeeView employeeView;
+	private CancelBillView cancelBillView;
+	private ReportView reportView;
 
 	public HotelBillingApplication() {
+		this.onboardView = new OnboardView(this);
 		this.billingView = new BillingView();
+		this.employeeView = new EmployeeView();
+		this.cancelBillView = new CancelBillView();
+		this.reportView = new ReportView();
 	}
 
 	public static void main(String[] args) {
@@ -38,15 +48,13 @@ public class HotelBillingApplication extends BaseView {
 		do {
 			menuOptions.clear();
 			menuOptions.add("Billing");
-			menuOptions.add("Bill Cancel");
+			menuOptions.add("Today Billing Report");
 			menuOptions.add("Exit");
 			printOptionsTable(menuOptions, "Features");
 			print("Choose valid option : ");
 			switch (menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size()) - 1)) {
 			case "Billing":
 				billingView.showBillingOptions();
-				break;
-			case "Bill Cancel":
 				break;
 			case "Exit":
 				break;
@@ -55,23 +63,41 @@ public class HotelBillingApplication extends BaseView {
 	}
 
 	private void showAdminFeatures() {
+		boolean isExit = false;
 		do {
 			menuOptions.clear();
 			menuOptions.add("Billing");
+			menuOptions.add("Employee");
 			menuOptions.add("Bill Cancel");
-			menuOptions.add("Exit");
+			menuOptions.add("Reports");
+			menuOptions.add("Log out");
 			printOptionsTable(menuOptions, "Features");
 			print("Choose valid option : ");
-			switch (menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size() - 1) - 1)) {
+			switch (menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size()) - 1)) {
 			case "Billing":
 				billingView.showBillingOptions();
 				break;
-			case "Bill Cancel":
+			case "Employee":
+				employeeView.showEmployeeOptions();
 				break;
-			case "Exit":
+			case "Bill Cancel":
+				cancelBillView.billCancel();
+				break;
+			case "Reports":
+				reportView.showReports();
+				break;
+			case "Log out":
+				onboardView.showOnBoardOptions();
+				showFeatures();
+				isExit = true;
 				break;
 			}
-		} while (true);
+		} while (!isExit);
+	}
+
+	public void endApp() {
+		printHeader("Thanks for using app,see you again...");
+		System.exit(0);
 	}
 
 }

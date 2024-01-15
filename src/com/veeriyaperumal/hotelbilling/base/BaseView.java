@@ -1,5 +1,7 @@
 package com.veeriyaperumal.hotelbilling.base;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Scanner;
 
 import com.veeriyaperumal.hotelbilling.model.Bill;
 import com.veeriyaperumal.hotelbilling.model.Dish;
+import com.veeriyaperumal.hotelbilling.model.User;
 
 public abstract class BaseView extends BaseViewModel {
 
@@ -29,7 +32,7 @@ public abstract class BaseView extends BaseViewModel {
 
 	}
 
-	public static void printOptionsTable(List<String> options, String header) {
+	public void printOptionsTable(List<String> options, String header) {
 		if (options == null || options.isEmpty()) {
 			System.out.println("No options to display.");
 			return;
@@ -46,6 +49,40 @@ public abstract class BaseView extends BaseViewModel {
 		}
 
 		System.out.println("+--------------------------------+");
+	}
+
+	public void printEmployeeTable(List<User> employeeList, String header) {
+		if (employeeList == null || employeeList.isEmpty()) {
+			System.out.println("No options to display.");
+			return;
+		}
+		System.out.println("+" + "-".repeat(48) + "+");
+		System.out.printf("| %-46s |\n", header);
+		System.out.println("+" + "-".repeat(48) + "+");
+		System.out.printf("| %-16s | %-27s |\n", "Id", "Name");
+		for (User user : employeeList) {
+			System.out.printf("| %-16s | %-27s |\n", user.getUserId(), user.getName());
+		}
+		System.out.println("+" + "-".repeat(48) + "+");
+
+	}
+
+	public static void printUserTable(List<User> userList, String header) {
+		if (userList == null || userList.isEmpty()) {
+			System.out.println("No options to display.");
+			return;
+		}
+		System.out.println("+" + "-".repeat(126) + "+");
+		System.out.printf("| %-124s |\n", header);
+		System.out.println("+" + "-".repeat(126) + "+");
+		System.out.printf("| %-6s | %-25s | %-15s | %-15s | %-51s |\n", "Id", "Name", "Mobile Number", "Role",
+				"Email Address");
+		System.out.println("+" + "-".repeat(126) + "+");
+		for (User user : userList) {
+			System.out.printf("| %-6s | %-25s | %-15s | %-15s | %-51s |\n", user.getUserId(), user.getName(),
+					user.getMobileNumber(), user.getRole(), user.getEmailAddress());
+		}
+		System.out.println("+" + "-".repeat(126) + "+");
 	}
 
 	public void printBillTable(Bill currentBill) {
@@ -91,6 +128,23 @@ public abstract class BaseView extends BaseViewModel {
 		}
 
 		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+	}
+
+	protected LocalDate getDateInput(String message) {
+		String userEnteredChoice = "";
+		do {
+			try {
+				userEnteredChoice = getScanner().nextLine();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				return LocalDate.parse(userEnteredChoice, formatter);
+			} catch (Exception e) {
+				showWrongSelectionMessage(message);
+				getScanner().next();
+				continue;
+			} finally {
+				printLineSeperator();
+			}
+		} while (true);
 	}
 
 	protected void print(String message) {

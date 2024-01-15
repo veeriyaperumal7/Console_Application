@@ -4,6 +4,27 @@ public class User {
 	private int userId;
 	private String name, mobileNumber, role, password, emailAddress;
 
+	public User() {
+
+	}
+
+	public User(String name, String mobileNumber, String role, String password, String emailAddress) {
+		this.name = name;
+		this.mobileNumber = mobileNumber;
+		this.role = role;
+		this.password = password;
+		this.emailAddress = emailAddress;
+	}
+
+	public User(int userId, String name, String mobileNumber, String role, String password, String emailAddress) {
+		this.userId = userId;
+		this.name = name;
+		this.mobileNumber = mobileNumber;
+		this.role = role;
+		this.password = password;
+		this.emailAddress = emailAddress;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -44,11 +65,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getemailAddresse() {
+	public String getEmailAddress() {
 		return emailAddress;
 	}
 
-	public void setemailAddress(String emailAddress) {
+	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
 }

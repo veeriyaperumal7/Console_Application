@@ -2,20 +2,28 @@ package com.veeriyaperumal.hotelbilling.onboardview;
 
 import java.sql.SQLException;
 
+import com.veeriyaperumal.hotelbilling.HotelBillingApplication;
 import com.veeriyaperumal.hotelbilling.base.BaseView;
 import com.veeriyaperumal.hotelbilling.model.User;
 
 public class OnboardView extends BaseView {
 
 	private OnboardViewModel onboardViewModel;
+	private HotelBillingApplication hotelBillingApplication;
 
 	public OnboardView() {
+		onboardViewModel = new OnboardViewModel(this);
+	}
+
+	public OnboardView(HotelBillingApplication hotelBillingApplication) {
+		this.hotelBillingApplication = hotelBillingApplication;
 		onboardViewModel = new OnboardViewModel(this);
 	}
 
 	public void showOnBoardOptions() {
 		menuOptions.clear();
 		menuOptions.add("Login");
+		menuOptions.add("Exit");
 		printOptionsTable(menuOptions, "OPTIONS");
 		print("Choose your option : ");
 		chooseOptions(menuOptions.get(getIntegerInput("Choose Valid Options : ", 1, menuOptions.size()) - 1));
@@ -27,6 +35,9 @@ public class OnboardView extends BaseView {
 			showLoginOption();
 			break;
 		}
+		case "Exit": {
+			hotelBillingApplication.endApp();
+		}
 		}
 
 	}
@@ -36,7 +47,7 @@ public class OnboardView extends BaseView {
 
 		while (true) {
 			print("Enter your email address : ");
-			currentUser.setemailAddress(getEmailInput("Enter valid email input :"));
+			currentUser.setEmailAddress(getEmailInput("Enter valid email input :"));
 			print("Enter your password : ");
 			currentUser.setPassword(getStringInput("Enter valid password :"));
 			try {
