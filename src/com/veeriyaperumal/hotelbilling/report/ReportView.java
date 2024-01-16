@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.veeriyaperumal.hotelbilling.base.BaseView;
 import com.veeriyaperumal.hotelbilling.model.Bill;
+import com.veeriyaperumal.hotelbilling.model.Dish;
 import com.veeriyaperumal.hotelbilling.repository.Repository;
 
 public class ReportView extends BaseView {
@@ -22,6 +23,18 @@ public class ReportView extends BaseView {
 		} else {
 			showUserReports();
 		}
+	}
+
+	private void showAdminReports() {
+		menuOptions.clear();
+		menuOptions.add("Employee reports");
+		menuOptions.add("Bill wise report");
+		menuOptions.add("Dish wise sales reports");
+		menuOptions.add("Sales reports");
+		menuOptions.add("Dish list reports");
+		printOptionsTable(menuOptions, "Reports");
+		print("Enter your choice : ");
+		chooseReport(menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size()) - 1));
 	}
 
 	private void showUserReports() {
@@ -42,6 +55,7 @@ public class ReportView extends BaseView {
 			printEmployeeReeport();
 			break;
 		case "Dish wise sales reports":
+			printDishWiseSalesReport();
 			break;
 		case "Sales reports":
 			printSalesReport();
@@ -50,6 +64,17 @@ public class ReportView extends BaseView {
 			printDishListReport();
 			break;
 		}
+	}
+
+	public void printDishWiseSalesReport() {
+		try {
+			ArrayList<Dish> dishReport = reportViewModel.getDishWiseSalesReport();
+			printDishSalesTable(dishReport, "Dish wise sales report");
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			printErrorMessage("Error while dish wise sales report...");
+		}
+
 	}
 
 	private void printSalesReport() {
@@ -64,9 +89,9 @@ public class ReportView extends BaseView {
 		} else {
 			while (true) {
 				print("Note date format must be give like (YYYY-MM-DD)\nEnter from date : ");
-				fromDate = getDateInput("Enter valid date format like this (YYYY-MM-DD)...");
+				fromDate = getDateInput("Enter valid date format like this (YYYY-MM-DD) : ");
 				print("Enter to date : ");
-				toDate = getDateInput("Enter valid date format like this (YYYY-MM-DD)...");
+				toDate = getDateInput("Enter valid date format like this (YYYY-MM-DD) : ");
 				if (reportViewModel.isValidFromToDate(fromDate, toDate)) {
 					break;
 				} else {
@@ -118,23 +143,15 @@ public class ReportView extends BaseView {
 		int billNumber = getIntegerInput("Enter valid bill number : ", 1, Integer.MAX_VALUE);
 		try {
 			Bill bill = reportViewModel.getBill(billNumber);
-			printBillTable(bill);
+			if (bill == null) {
+				printUserWarningMessage("Given bill not found...");
+			} else {
+				printBillTable(bill);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			printErrorMessage("Error while getting bill data...");
 		}
-	}
-
-	private void showAdminReports() {
-		menuOptions.clear();
-		menuOptions.add("Employee reports");
-		menuOptions.add("Bill wise report");
-		menuOptions.add("Dish wise sales reports");
-		menuOptions.add("Sales reports");
-		menuOptions.add("Dish list reports");
-		printOptionsTable(menuOptions, "Reports");
-		print("Enter your choice : ");
-		chooseReport(menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size()) - 1));
 	}
 
 }

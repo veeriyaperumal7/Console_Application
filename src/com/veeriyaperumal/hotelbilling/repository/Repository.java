@@ -52,9 +52,7 @@ public class Repository {
 	}
 
 	public ArrayList<Dish> getDishList() throws ClassNotFoundException, SQLException {
-		if (dishList == null) {
-			loadDishes();
-		}
+		loadDishes();
 		return dishList;
 	}
 
@@ -181,6 +179,40 @@ public class Repository {
 			result.add(resultSet.getFloat("totalamount") + "");
 		}
 		return result;
+	}
+
+	public ArrayList<Dish> getDishWiseSalesReport() throws ClassNotFoundException, SQLException {
+		ArrayList<Dish> report = new ArrayList<>();
+		query = "SELECT dish.dish_name as dish_name, " + "SUM(billing_details.quantity) as quantity, "
+				+ "SUM(billing_details.subtotal) as subtotal " + "FROM billing_details "
+				+ "INNER JOIN dish ON billing_details.dish_id = dish.dish_id "
+				+ "WHERE billing_details.billing_detail__status = 1 " + "GROUP BY dish.dish_id ";
+		resultSet = JdbcConnection.getInstance().executeSelectQuery(query);
+		while (resultSet.next()) {
+			Dish dish = new Dish();
+			dish.setDishName(resultSet.getString("dish_name"));
+			dish.setQuantity(resultSet.getInt("quantity"));
+			dish.setPrice(resultSet.getFloat("subtotal"));
+			report.add(dish);
+		}
+		return report;
+	}
+
+	public boolean addDish(Dish newDish) throws ClassNotFoundException, SQLException {
+		query = "insert into dish (dish_name,dish_price,dish_status) values ('" + newDish.getDishName() + "',"
+				+ newDish.getPrice() + ",1)";
+		return JdbcConnection.getInstance().executeInsertOrUpdateQuery(query) >= 1;
+	}
+
+	public boolean updateDishData(Dish userSelectedDish) throws ClassNotFoundException, SQLException {
+		query = "update dish set dish_name='" + userSelectedDish.getDishName() + "', dish_price = "
+				+ userSelectedDish.getPrice() + " where dish_id = " + userSelectedDish.getDishId();
+		return JdbcConnection.getInstance().executeInsertOrUpdateQuery(query) >= 1;
+	}
+
+	public boolean removeDish(Dish userSelectedDish) throws ClassNotFoundException, SQLException {
+		query = "update dish set dish_status=0 where dish_id = " + userSelectedDish.getDishId();
+		return JdbcConnection.getInstance().executeInsertOrUpdateQuery(query) >= 1;
 	}
 
 }

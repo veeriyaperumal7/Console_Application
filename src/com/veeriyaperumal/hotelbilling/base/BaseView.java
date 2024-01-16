@@ -53,7 +53,8 @@ public abstract class BaseView extends BaseViewModel {
 
 	public void printEmployeeTable(List<User> employeeList, String header) {
 		if (employeeList == null || employeeList.isEmpty()) {
-			System.out.println("No options to display.");
+			System.out.println(YELLOW + "No options to display." + RESET);
+			printLineSeperator();
 			return;
 		}
 		System.out.println("+" + "-".repeat(48) + "+");
@@ -67,9 +68,10 @@ public abstract class BaseView extends BaseViewModel {
 
 	}
 
-	public static void printUserTable(List<User> userList, String header) {
+	public void printUserTable(List<User> userList, String header) {
 		if (userList == null || userList.isEmpty()) {
-			System.out.println("No options to display.");
+			System.out.println(YELLOW + "No options to display." + RESET);
+			printLineSeperator();
 			return;
 		}
 		System.out.println("+" + "-".repeat(126) + "+");
@@ -110,9 +112,10 @@ public abstract class BaseView extends BaseViewModel {
 		System.out.println("+" + "-".repeat(69) + "+");
 	}
 
-	public static void printDishTable(List<Dish> dishes, String header) {
+	public void printDishTable(List<Dish> dishes, String header) {
 		if (dishes.isEmpty()) {
-			System.out.println("No dishes to display.");
+			System.out.println(YELLOW + "No dishes to display." + RESET);
+			printLineSeperator();
 			return;
 		}
 		System.out.println("+" + "-".repeat(48) + "+");
@@ -130,6 +133,33 @@ public abstract class BaseView extends BaseViewModel {
 		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
 	}
 
+	public void printDishSalesTable(List<Dish> dishes, String header) {
+		int quantity = 0;
+		float price = 0.0f;
+		if (dishes.isEmpty()) {
+			System.out.println(YELLOW + "No dishes to display." + RESET);
+			printLineSeperator();
+			return;
+		}
+		System.out.println("+" + "-".repeat(48) + "+");
+		System.out.printf("| %-46s |\n", header);
+		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+
+		System.out.printf("| %-10s | %-20s | %-10s |%n", "Dish Name", "Quantity", "Total");
+
+		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+
+		for (Dish dish : dishes) {
+			System.out.printf("| %-10s | %-20d | %-10.2f |%n", dish.getDishName(), dish.getQuantity(), dish.getPrice());
+			price += dish.getPrice();
+			quantity += dish.getQuantity();
+		}
+
+		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+		System.out.printf("| %-10s | %-20d | %-10.2f |%n", "Total", quantity, price);
+		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+	}
+
 	protected LocalDate getDateInput(String message) {
 		String userEnteredChoice = "";
 		do {
@@ -139,7 +169,6 @@ public abstract class BaseView extends BaseViewModel {
 				return LocalDate.parse(userEnteredChoice, formatter);
 			} catch (Exception e) {
 				showWrongSelectionMessage(message);
-				getScanner().next();
 				continue;
 			} finally {
 				printLineSeperator();
@@ -273,6 +302,10 @@ public abstract class BaseView extends BaseViewModel {
 		do {
 			try {
 				userEnteredChoice = getScanner().nextLine();
+				if (userEnteredChoice.length() < 1) {
+					showWrongSelectionMessage(message);
+					getScanner().next();
+				}
 				break;
 			} catch (InputMismatchException e) {
 				showWrongSelectionMessage(message);

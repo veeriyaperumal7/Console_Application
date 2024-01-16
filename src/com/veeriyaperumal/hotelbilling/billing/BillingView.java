@@ -63,6 +63,11 @@ public class BillingView extends BaseView {
 
 	private void finishBill() {
 		try {
+			if (billingViewModel.getCurrentBill().getPurchasedDish().size() < 1) {
+				printUserWarningMessage("The bill is empty so not able to bill...");
+				printLineSeperator();
+				return;
+			}
 			if (billingViewModel.finsihBill()) {
 				printSuccesMessage("Bill saved successfully...");
 			} else {
@@ -93,6 +98,9 @@ public class BillingView extends BaseView {
 
 		try {
 			printDishTable(billingViewModel.getDishList(), "Dishes");
+			if (billingViewModel.getDishList() == null || billingViewModel.getDishList().size() < 1) {
+				return;
+			}
 			print("Enter dish id : ");
 			int selectedDishId = getIntegerInput("Choose valid dish id : ");
 			print("Enter quantity : ");

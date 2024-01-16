@@ -6,6 +6,7 @@ import com.veeriyaperumal.hotelbilling.repository.Repository;
 import com.veeriyaperumal.hotelbilling.base.BaseView;
 import com.veeriyaperumal.hotelbilling.billing.BillingView;
 import com.veeriyaperumal.hotelbilling.cancelbill.CancelBillView;
+import com.veeriyaperumal.hotelbilling.dish.DishView;
 import com.veeriyaperumal.hotelbilling.employee.EmployeeView;
 
 public class HotelBillingApplication extends BaseView {
@@ -15,6 +16,7 @@ public class HotelBillingApplication extends BaseView {
 	private EmployeeView employeeView;
 	private CancelBillView cancelBillView;
 	private ReportView reportView;
+	private DishView dishView;
 
 	public HotelBillingApplication() {
 		this.onboardView = new OnboardView(this);
@@ -22,6 +24,7 @@ public class HotelBillingApplication extends BaseView {
 		this.employeeView = new EmployeeView();
 		this.cancelBillView = new CancelBillView();
 		this.reportView = new ReportView();
+		this.dishView = new DishView();
 	}
 
 	public static void main(String[] args) {
@@ -44,22 +47,28 @@ public class HotelBillingApplication extends BaseView {
 	}
 
 	private void showUserFeatures() {
-
+		boolean isExit = false;
 		do {
 			menuOptions.clear();
 			menuOptions.add("Billing");
-			menuOptions.add("Today Billing Report");
-			menuOptions.add("Exit");
+			menuOptions.add("Reports");
+			menuOptions.add("Log out");
 			printOptionsTable(menuOptions, "Features");
 			print("Choose valid option : ");
 			switch (menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size()) - 1)) {
 			case "Billing":
 				billingView.showBillingOptions();
 				break;
-			case "Exit":
+			case "Reports":
+				reportView.showReports();
+				break;
+			case "Log out":
+				onboardView.showOnBoardOptions();
+				showFeatures();
+				isExit = true;
 				break;
 			}
-		} while (true);
+		} while (!isExit);
 	}
 
 	private void showAdminFeatures() {
@@ -67,6 +76,7 @@ public class HotelBillingApplication extends BaseView {
 		do {
 			menuOptions.clear();
 			menuOptions.add("Billing");
+			menuOptions.add("Dish");
 			menuOptions.add("Employee");
 			menuOptions.add("Bill Cancel");
 			menuOptions.add("Reports");
@@ -76,6 +86,9 @@ public class HotelBillingApplication extends BaseView {
 			switch (menuOptions.get(getIntegerInput("Choose valid options : ", 1, menuOptions.size()) - 1)) {
 			case "Billing":
 				billingView.showBillingOptions();
+				break;
+			case "Dish":
+				dishView.showDishOptions();
 				break;
 			case "Employee":
 				employeeView.showEmployeeOptions();

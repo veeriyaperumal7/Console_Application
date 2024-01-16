@@ -42,4 +42,8 @@ public class ReportViewModel extends BaseViewModel {
 		return Repository.getInstance().getSalesReport(fromDate, toDate);
 	}
 
+	public ArrayList<Dish> getDishWiseSalesReport() throws ClassNotFoundException, SQLException {
+		return Repository.getInstance().getDishWiseSalesReport();
+	}
+
 }
