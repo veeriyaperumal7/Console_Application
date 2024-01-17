@@ -141,23 +141,23 @@ public abstract class BaseView extends BaseViewModel {
 			printLineSeperator();
 			return;
 		}
-		System.out.println("+" + "-".repeat(48) + "+");
-		System.out.printf("| %-46s |\n", header);
-		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+		System.out.println("+" + "-".repeat(68) + "+");
+		System.out.printf("| %-66s |\n", header);
+		System.out.println("+" + "-".repeat(32) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
 
-		System.out.printf("| %-10s | %-20s | %-10s |%n", "Dish Name", "Quantity", "Total");
+		System.out.printf("| %-30s | %-20s | %-10s |%n", "Dish Name", "Quantity", "Total");
 
-		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+		System.out.println("+" + "-".repeat(32) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
 
 		for (Dish dish : dishes) {
-			System.out.printf("| %-10s | %-20d | %-10.2f |%n", dish.getDishName(), dish.getQuantity(), dish.getPrice());
+			System.out.printf("| %-30s | %-20d | %-10.2f |%n", dish.getDishName(), dish.getQuantity(), dish.getPrice());
 			price += dish.getPrice();
 			quantity += dish.getQuantity();
 		}
 
-		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
-		System.out.printf("| %-10s | %-20d | %-10.2f |%n", "Total", quantity, price);
-		System.out.println("+" + "-".repeat(12) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+		System.out.println("+" + "-".repeat(32) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
+		System.out.printf("| %-30s | %-20d | %-10.2f |%n", "Total", quantity, price);
+		System.out.println("+" + "-".repeat(32) + "+" + "-".repeat(22) + "+" + "-".repeat(12) + "+");
 	}
 
 	protected LocalDate getDateInput(String message) {
