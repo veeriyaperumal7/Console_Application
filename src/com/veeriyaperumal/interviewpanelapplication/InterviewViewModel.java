@@ -3,6 +3,7 @@ package com.veeriyaperumal.interviewpanelapplication;
 import java.util.Queue;
 
 import com.veeriyaperumal.interviewpanelapplication.dto.Candidate;
+import com.veeriyaperumal.interviewpanelapplication.repository.Repository;
 
 public class InterviewViewModel implements Runnable {
 
