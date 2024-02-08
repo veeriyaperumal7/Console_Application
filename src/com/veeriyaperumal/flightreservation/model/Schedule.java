@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Schedule implements Serializable{
+public class Schedule implements Serializable {
 
 	/**
 	 * 
@@ -19,6 +19,13 @@ public class Schedule implements Serializable{
 	private int seatCount;
 	private int bookedCount;
 	private float price;
+
+	@Override
+	public String toString() {
+		return "Flight number : " + flightNumber + "\n" + "Name : " + flightName + "\nDeparture time : " + depatureTime
+				+ "\nArrival time : " + arrivalTime + "\nFare :" + String.valueOf(price) + "\n Ticket count : "
+				+ String.valueOf(seatCount - bookedCount);
+	}
 
 	public int getScheduleId() {
 		return scheduleId;

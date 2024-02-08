@@ -1,16 +1,14 @@
 package com.veeriyaperumal.flightreservation.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Ticket implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int pnr;
 	private int ScheduleId;
-	private int userId;
+	private ArrayList<Integer> passengers = new ArrayList();
 	private String ticketStatus;
 
 	public int getPnr() {
@@ -29,20 +27,20 @@ public class Ticket implements Serializable {
 		ScheduleId = scheduleId;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	public String getTicketStatus() {
 		return ticketStatus;
 	}
 
 	public void setTicketStatus(String ticketStatus) {
 		this.ticketStatus = ticketStatus;
+	}
+
+	public ArrayList<Integer> getPassengers() {
+		return passengers;
+	}
+
+	public void setPassengers(ArrayList<Integer> passengers) {
+		this.passengers = passengers;
 	}
 
 }

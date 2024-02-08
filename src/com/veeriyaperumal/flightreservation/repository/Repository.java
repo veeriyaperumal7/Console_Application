@@ -17,9 +17,34 @@ public class Repository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	public static Repository repository;
+
 	private HashMap<Integer, Schedule> schedules;
 	private HashMap<Integer, User> users;
 	private HashMap<Integer, Ticket> tickets;
+
+	public HashMap<Integer, Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(HashMap<Integer, Schedule> schedules) {
+		this.schedules = schedules;
+	}
+
+	public HashMap<Integer, User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(HashMap<Integer, User> users) {
+		this.users = users;
+	}
+
+	public HashMap<Integer, Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(HashMap<Integer, Ticket> tickets) {
+		this.tickets = tickets;
+	}
 
 	private Repository() {
 		this.schedules = new HashMap();
@@ -70,5 +95,24 @@ public class Repository implements Serializable {
 			e.printStackTrace();
 		}
 
+	}
+
+	public Ticket bookTickets(Schedule schedule, User[] passengers) {
+		Ticket ticket = new Ticket();
+		ticket.setPnr(1000 + tickets.size() + 1);
+		ticket.setScheduleId(schedule.getScheduleId());
+		ticket.setTicketStatus("CONFIRMED");
+		for (User passenger : passengers) {
+			if (schedule.getBookedCount() < schedule.getSeatCount()) {
+				passenger.setTicketStatus("CNF");
+			} else {
+				passenger.setTicketStatus("WL");
+			}
+			schedule.setBookedCount(schedule.getBookedCount() + 1);
+			users.put(passenger.getUserId(), passenger);
+			ticket.getPassengers().add(passenger.getUserId());
+		}
+		tickets.put(ticket.getPnr(), ticket);
+		return ticket;
 	}
 }

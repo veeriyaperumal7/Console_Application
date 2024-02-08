@@ -3,15 +3,13 @@ package com.veeriyaperumal.flightreservation.model;
 import java.io.Serializable;
 
 public class User implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private int userId;
 	private String name;
 	private int age;
 	private String gender;
-	private boolean status;
+	private String ticketStatus;
 
 	public int getUserId() {
 		return userId;
@@ -45,11 +43,12 @@ public class User implements Serializable{
 		this.gender = gender;
 	}
 
-	public boolean isStatus() {
-		return status;
+
+	public String getTicketStatus() {
+		return ticketStatus;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setTicketStatus(String ticketStatus) {
+		this.ticketStatus = ticketStatus;
 	}
 }
