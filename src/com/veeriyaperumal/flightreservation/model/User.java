@@ -2,7 +2,7 @@ package com.veeriyaperumal.flightreservation.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int userId;
@@ -10,6 +10,12 @@ public class User implements Serializable{
 	private int age;
 	private String gender;
 	private String ticketStatus;
+
+	@Override
+	public String toString() {
+		return "User Id : " + userId + "\nName : " + name + "\nAge : " + age + "\nGender : " + gender + "\nStatus : "
+				+ ticketStatus + "\n";
+	}
 
 	public int getUserId() {
 		return userId;
@@ -42,7 +48,6 @@ public class User implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
 
 	public String getTicketStatus() {
 		return ticketStatus;

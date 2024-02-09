@@ -6,9 +6,6 @@ import java.util.ArrayList;
 
 public class Schedule implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int scheduleId;
 	private int flightNumber;
@@ -23,7 +20,7 @@ public class Schedule implements Serializable {
 	@Override
 	public String toString() {
 		return "Flight number : " + flightNumber + "\n" + "Name : " + flightName + "\nDeparture time : " + depatureTime
-				+ "\nArrival time : " + arrivalTime + "\nFare :" + String.valueOf(price) + "\n Ticket count : "
+				+ "\nArrival time : " + arrivalTime + "\nFare :" + String.valueOf(price) + "\nTicket count : "
 				+ String.valueOf(seatCount - bookedCount);
 	}
 

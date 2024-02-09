@@ -9,7 +9,8 @@ public class Ticket implements Serializable {
 	private int pnr;
 	private int ScheduleId;
 	private ArrayList<Integer> passengers = new ArrayList();
-	private String ticketStatus;
+	private String ticketStatus, fromStation, toStation;
+	private float price;
 
 	public int getPnr() {
 		return pnr;
@@ -41,6 +42,30 @@ public class Ticket implements Serializable {
 
 	public void setPassengers(ArrayList<Integer> passengers) {
 		this.passengers = passengers;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	public String getFromStation() {
+		return fromStation;
+	}
+
+	public void setFromStation(String fromStation) {
+		this.fromStation = fromStation;
+	}
+
+	public String getToStation() {
+		return toStation;
+	}
+
+	public void setToStation(String toStation) {
+		this.toStation = toStation;
 	}
 
 }

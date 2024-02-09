@@ -13,6 +13,7 @@ public class BookingViewModel {
 
 	private BookingView bookingView;
 	private ArrayList<Schedule> flightScheduledList;
+	private HashMap<Integer,User> users;
 
 	public BookingViewModel(BookingView bookingView) {
 		this.bookingView = bookingView;
@@ -40,8 +41,8 @@ public class BookingViewModel {
 		return flightScheduledList;
 	}
 
-	public Ticket bookTickets(Schedule schedule, User[] passengers) {
-		return Repository.getInstance().bookTickets(schedule, passengers);
+	public Ticket bookTickets(Schedule schedule, User[] passengers, String fromStation, String toStation) {
+		return Repository.getInstance().bookTickets(schedule, passengers,fromStation,toStation);
 
 	}
 

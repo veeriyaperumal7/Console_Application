@@ -97,8 +97,10 @@ public class Repository implements Serializable {
 
 	}
 
-	public Ticket bookTickets(Schedule schedule, User[] passengers) {
+	public Ticket bookTickets(Schedule schedule, User[] passengers, String fromStation, String toStation) {
 		Ticket ticket = new Ticket();
+		ticket.setFromStation(fromStation);
+		ticket.setToStation(toStation);
 		ticket.setPnr(1000 + tickets.size() + 1);
 		ticket.setScheduleId(schedule.getScheduleId());
 		ticket.setTicketStatus("CONFIRMED");
@@ -112,7 +114,22 @@ public class Repository implements Serializable {
 			users.put(passenger.getUserId(), passenger);
 			ticket.getPassengers().add(passenger.getUserId());
 		}
+		ticket.setPrice(schedule.getPrice() * passengers.length);
 		tickets.put(ticket.getPnr(), ticket);
+		updateInDataBase();
 		return ticket;
+	}
+
+	public Ticket getTicket(int pnrNumber) {
+		return tickets.get(pnrNumber);
+
+	}
+
+	public Schedule getSchedule(int scheduleId) {
+		return schedules.get(scheduleId);
+	}
+
+	public User getPassenger(int passengerId) {
+		return users.get(passengerId);
 	}
 }

@@ -37,18 +37,53 @@ public class BookingView extends BaseView {
 		}
 		print("\nEnter Flight number : ");
 		int flightNumber = getScanner().nextInt();
-		Schedule schedule =  bookingViewModel.checkIsValidFlightNumber(flightNumber);
-		if(schedule==null) {
+		getScanner().nextLine();
+		Schedule schedule = bookingViewModel.checkIsValidFlightNumber(flightNumber);
+		if (schedule == null) {
 			println("The enterd flight number is wrong...So returned to main menu....");
+			return;
 		}
 		User user[] = getPassengerData();
 		if (user == null) {
 			return;
 		}
-		getPayment
-		Ticket ticket = bookingViewModel.bookTickets(schedule,user);
-	
-		
+		println("The total ticket price is : " + schedule.getPrice() * user.length);
+		if (getPayment().equals("CANCEL")) {
+			print("Ticket cancelled...");
+			return;
+		}
+		Ticket ticket = bookingViewModel.bookTickets(schedule, user, fromStation, toStation);
+		if (ticket.getPassengers().size() < 1) {
+			println("Ticket booking failed...");
+		} else {
+			println("Ticket(s) booked successfully...\nTicket Details\n");
+			printTickets(ticket, schedule, user);
+		}
+
+	}
+
+	private void printTickets(Ticket ticket, Schedule schedule, User[] passengers) {
+
+		println("Flight Details \n\nFlight Number : " + schedule.getFlightNumber() + "\nFlight Name : "
+				+ schedule.getFlightName() + "\nDeparture Time : " + schedule.getDepatureTime() + "\nArrival Time : "
+				+ schedule.getArrivalTime() + "\nFrom : " + ticket.getFromStation() + "\nTo : " + ticket.getToStation()
+				+ "\nPNR No : " + ticket.getPnr() + "\nTotal Fare : " + ticket.getPrice() + "\n\nUser Details : ");
+
+		for (User user : passengers) {
+			println(user.toString());
+		}
+
+	}
+
+	private String getPayment() {
+		println("1.Pay\n2.Cancel\nChoose your option : ");
+		if (getScanner().nextInt() == 1) {
+			getScanner().nextLine();
+			return "Pay";
+		} else {
+			getScanner().nextLine();
+			return "Cancel";
+		}
 	}
 
 	private User[] getPassengerData() {
@@ -58,17 +93,20 @@ public class BookingView extends BaseView {
 			println("Passenger count less than 1...\nSo return to main menu...");
 			return null;
 		}
+		getScanner().nextLine();
 		User passengers[] = new User[passengerCount];
 		for (int i = 0; i < passengerCount; i++) {
 			User passenger = new User();
 			print("Name : ");
 			passenger.setName(getScanner().nextLine());
-			print("/nAge : ");
+			print("Age : ");
 			passenger.setAge(getScanner().nextInt());
-			print("/nGender : ");
+			print("Gender : ");
+			getScanner().nextLine();
 			passenger.setGender(getScanner().nextLine());
-			print("/nId : ");
+			print("Id : ");
 			passenger.setUserId(getScanner().nextInt());
+			getScanner().nextLine();
 			passengers[i] = passenger;
 			printSeperatorLine();
 
