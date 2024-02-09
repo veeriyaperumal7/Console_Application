@@ -11,22 +11,23 @@ public class OnboardViewModel {
 	}
 
 	public boolean signUp(User user) {
-		return Repository.getInstance().signUp(user);
-	}
-
-	public boolean signIn(User user) {
 		if (!user.getEmail().contains("@") || !user.getEmail().contains(".com") || user.getPassword().length() < 1
 				|| user.getSecret().length() < 1) {
 			onboardView.printFailureMessage(
 					"Check your details...\nEmail address must contains @ and .com ,other data character must have atleast one character.\nTry again...");
-		return false;
+			return false;
 		}
-		if(Repository.getInstance().signIn(user)) {
+		if (Repository.getInstance().signIn(user)) {
 			return true;
-		}else {
+		} else {
 			onboardView.printFailureMessage("Email address already present...Try again.");
 			return false;
 		}
+
+	}
+
+	public boolean signIn(User user) {
+		return Repository.getInstance().signUp(user);
 	}
 
 }

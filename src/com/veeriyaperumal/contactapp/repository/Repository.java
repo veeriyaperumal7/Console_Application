@@ -22,17 +22,17 @@ public class Repository {
 	}
 
 	public boolean signUp(User user) {
-		currentUser = users.get(user.getEmail());
-		return (currentUser == null) ? false : true;
-	}
-
-	public boolean signIn(User user) {
 		if (users.containsKey(user.getEmail())) {
 			return false;
 		}
 		users.put(user.getEmail(), new User(user.getEmail(), user.getPassword(), user.getSecret()));
 		currentUser = users.get(user.getEmail());
 		return true;
+	}
+
+	public boolean signIn(User user) {
+		currentUser = users.get(user.getEmail());
+		return (currentUser == null) ? false : true;
 	}
 
 	public List<Contact> getContactList() {

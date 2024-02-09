@@ -19,24 +19,27 @@ public class OnboardView {
 	public boolean showOnboardOption() {
 		int choosenOption;
 		printFeatures();
-		System.out.print("Enter your option");
+		System.out.print("Enter your option : ");
 		choosenOption = read.nextInt();
 		read.nextLine();
 		System.out.println("\n----------------------------------------------------------------------------\n");
 		switch (options.get(choosenOption - 1)) {
 		case "Sign in": {
 			signIn();
+			System.out.println("\n----------------------------------------------------------------------------\n");
 			return false;
 		}
 
 		case "Sign up": {
 			signUp();
+			System.out.println("\n----------------------------------------------------------------------------\n");
 			return false;
 		}
 
 		case "Exit": {
-			// exit();
+			System.out.println("\n----------------------------------------------------------------------------\n");
 			return true;
+
 		}
 
 		}
@@ -51,6 +54,23 @@ public class OnboardView {
 			user.setEmail(read.nextLine());
 			System.out.print("Enter your password : ");
 			user.setPassword(read.nextLine());
+			System.out.print("Enter your secret : ");
+			user.setSecret(read.nextLine());
+			if (onboardViewModel.signIn(user)) {
+				System.out.println("Sign in successfully...");
+				break;
+			}
+		}
+	}
+
+	private void signIn() {
+
+		User user = new User();
+		while (true) {
+			System.out.print("Enter your email : ");
+			user.setEmail(read.nextLine());
+			System.out.print("Enter your password : ");
+			user.setPassword(read.nextLine());
 
 			if (onboardViewModel.signUp(user)) {
 				System.out.println("Sign up successfully...");
@@ -59,23 +79,6 @@ public class OnboardView {
 				System.out.println("Sign up failed.Try again..");
 			}
 
-		}
-
-	}
-
-	private void signIn() {
-		User user = new User();
-		while (true) {
-			System.out.print("Enter your email : ");
-			user.setEmail(read.nextLine());
-			System.out.print("Enter your password : ");
-			user.setPassword(read.nextLine());
-			System.out.print("Enter your secret : ");
-			user.setSecret(read.nextLine());
-			if (onboardViewModel.signIn(user)) {
-				System.out.println("Sign in successfully...");
-				break;
-			}
 		}
 
 	}
